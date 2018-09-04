@@ -50,5 +50,5 @@
 	psmt.close();
 	conn.close();
 	//로그인페이지 이동
-	response.sendRedirect("/jboard01/login.jsp");
+	response.sendRedirect("/jboard01/login.jsp?reg=success");
 %>
