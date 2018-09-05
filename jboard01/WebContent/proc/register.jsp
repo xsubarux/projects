@@ -24,7 +24,7 @@
 	Connection conn = null;
 	PreparedStatement psmt = null;
 	
-	String sql = "INSERT INTO JB_MEMBER";
+	String sql = "INSERT INTO JB_MEMBER ";
 		   sql += "(uid, pass, name, nick, email, hp, zip, addr1, addr2, regip, rdate)";
 		   sql += "VALUES(?,?,?,?,?,?,?,?,?,?,NOW())";
 	//1단계
