@@ -1,9 +1,13 @@
-<%@page import="kr.co.jboard01.Member"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="kr.co.jboard01.vo.BoardVO"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="kr.co.jboard01.vo.MemberVO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-
-	Member user = (Member)session.getAttribute("user");
-%>
+<%@ include file="./proc/list.jsp" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -27,21 +31,35 @@
 						<td>날짜</td>
 						<td>조회</td>
 					</tr>
+						<%
+							for(BoardVO vo: list){							
+					%>
 				
 					<tr>
-						<td>1</td>
-						<td><a href="#">테스트 제목입니다.</a>&nbsp;[3]</td>
-						<td>홍길동</td>
-						<td>18-03-01</td>
-						<td>12</td>
+						<td><%= vo.getSeq() %></td>
+						<td><a href="#"><%=vo.getTitle() %></a>&nbsp;[<%=vo.getComment() %>]</td>
+						<td><%=vo.getUid() %></td>
+						<td><%=vo.getRdate().substring(2, 10) %></td>
+						<td><%=vo.getHit() %></td>
 					</tr>
+					
+					<%
+							}
+	
+					%>
 				</table>
 			</div>
 			<!-- 페이징 -->
 			<nav class="paging">
 				<span> 
 				<a href="#" class="prev">이전</a>
-				<a href="#" class="num">1</a>
+				<%
+					for(int i=1; i<=paging; i++){
+				%>
+				<a href="./list.jsp?pg=<%= i %>" class="num"><%= i %></a>
+				<%
+					}
+				%>
 				<a href="#" class="next">다음</a>
 				</span>
 			</nav>

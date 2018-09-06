@@ -1,6 +1,6 @@
-package kr.co.jboard01;
+package kr.co.jboard01.vo;
 
-public class Member {
+public class MemberVO {
 	
 	public int getSeq() {
 		return seq;

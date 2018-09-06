@@ -1,3 +1,4 @@
+<%@page import="kr.co.jboard01.config.DBConfig"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
@@ -17,20 +18,15 @@
 	String addr2 = request.getParameter("addr2");
 	String regip = request.getRemoteAddr();
 	
-	final String HOST = "jdbc:mysql://192.168.0.178:3306/lhj";
-	final String USER = "lhj";
-	final String PASS = "1234";	
-	
 	Connection conn = null;
 	PreparedStatement psmt = null;
 	
 	String sql = "INSERT INTO JB_MEMBER ";
 		   sql += "(uid, pass, name, nick, email, hp, zip, addr1, addr2, regip, rdate)";
 		   sql += "VALUES(?,?,?,?,?,?,?,?,?,?,NOW())";
-	//1단계
-	Class.forName("com.mysql.jdbc.Driver");
-	//2단계
-	conn = DriverManager.getConnection(HOST, USER, PASS);
+
+	conn = DBConfig.getConnect();
+	
 	//3단계
 	psmt = conn.prepareStatement(sql);
 	psmt.setString(1, uid);

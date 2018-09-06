@@ -1,3 +1,4 @@
+<%@page import="kr.co.jboard01.config.DBConfig"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -13,10 +14,6 @@
 	String uid = request.getParameter("uid");
 	String regip = request.getRemoteAddr();
 	
-	final String HOST = "jdbc:mysql://192.168.0.178:3306/lhj";
-	final String USER = "lhj";
-	final String PASS = "1234";	
-	
 	Connection conn = null;
 	Statement stmt = null;
 		
@@ -27,10 +24,8 @@
 		   sql += "uid='"+uid+"', ";
 		   sql += "regip='"+regip+"', ";
 		   sql += "rdate=NOW();";
-	//1단계
-	Class.forName("com.mysql.jdbc.Driver");
-	//2단계
-	conn = DriverManager.getConnection(HOST, USER, PASS);
+	
+	conn = DBConfig.getConnect();	   
 	//3단계
 	stmt = conn.createStatement();
 	//4단계

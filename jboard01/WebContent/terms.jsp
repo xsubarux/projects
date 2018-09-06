@@ -1,21 +1,16 @@
+<%@page import="kr.co.jboard01.config.DBConfig"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	final String HOST = "jdbc:mysql://192.168.0.178:3306/lhj";
-	final String USER = "lhj";
-	final String PASS = "1234";
-	
+
 	Connection 	conn = null;
 	Statement 	stmt = null;
 	ResultSet	rs	 = null;
 	
-	//1단계
-	Class.forName("com.mysql.jdbc.Driver");
-	//2단계
-	conn = DriverManager.getConnection(HOST, USER, PASS);
+	conn = DBConfig.getConnect();
 	//3단계
 	stmt = conn.createStatement(); 
 	//4단계
