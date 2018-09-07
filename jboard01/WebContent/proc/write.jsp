@@ -1,3 +1,5 @@
+<%@page import="kr.co.jboard01.vo.BoardVO"%>
+<%@page import="kr.co.jboard01.dao.BoardDAO"%>
 <%@page import="kr.co.jboard01.config.DBConfig"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
@@ -14,26 +16,14 @@
 	String uid = request.getParameter("uid");
 	String regip = request.getRemoteAddr();
 	
-	Connection conn = null;
-	Statement stmt = null;
-		
-	String sql  = "INSERT INTO JB_BOARD SET ";
-		   sql += "cate='notice', ";
-		   sql += "title='"+title+"', ";
-		   sql += "content='"+content+"', ";
-		   sql += "uid='"+uid+"', ";
-		   sql += "regip='"+regip+"', ";
-		   sql += "rdate=NOW();";
+	BoardVO vo = new BoardVO();
+	vo.setCate("notice");
+	vo.setTitle(title);
+	vo.setContent(content);
+	vo.setRegip(regip);
 	
-	conn = DBConfig.getConnect();	   
-	//3단계
-	stmt = conn.createStatement();
-	//4단계
-	stmt.executeUpdate(sql);
-	//5단계
-	//6단계
-	stmt.close();
-	conn.close();
+	BoardDAO dao = BoardDAO.getInstance();
+	dao.write(vo);
 	
 	//리스트 페이지 이동
 	response.sendRedirect("../list.jsp");

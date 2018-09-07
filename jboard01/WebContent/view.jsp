@@ -1,4 +1,13 @@
+<%@page import="kr.co.jboard01.vo.BoardVO"%>
+<%@page import="kr.co.jboard01.dao.BoardDAO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	String seq = request.getParameter("seq");
+	BoardDAO dao = BoardDAO.getInstance();
+	BoardVO vo = dao.view(seq);
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,10 +23,11 @@
 					<table>
 						<tr>
 							<td>제목</td>
-							<td><input type="text" name="subject" value="테스트 제목 입니다." readonly />
+							<td><input type="text" name="subject" value="<%= vo.getTitle() %>" readonly />
 							</td>
 						</tr>
 						
+						<!-- 
 						<tr>
 							<td>첨부파일</td>
 							<td>
@@ -25,11 +35,11 @@
 								<span>3회 다운로드</span>
 							</td>
 						</tr>
-						
+						-->
 						<tr>
 							<td>내용</td>
 							<td>
-								<textarea name="content" rows="20" readonly>테스트 내용 입니다.</textarea>
+								<textarea name="content" rows="20" readonly><%= vo.getContent() %></textarea>
 							</td>
 						</tr>
 					</table>

@@ -1,3 +1,4 @@
+<%@page import="kr.co.jboard01.dao.BoardDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.co.jboard01.vo.BoardVO"%>
@@ -7,7 +8,20 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="kr.co.jboard01.vo.MemberVO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="./proc/list.jsp" %>
+<%
+	//파라미터 수신
+	request.setCharacterEncoding("UTF-8");
+	String pg = request.getParameter("pg");
+
+	MemberVO user = (MemberVO)session.getAttribute("user");
+
+	BoardDAO dao = BoardDAO.getInstance();
+	int total = dao.getTotalCount();
+	int start = dao.getLimit(pg);
+	int paging = dao.getPage(total);
+	List<BoardVO> list = dao.list(start);
+	int count = total-start;
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -36,8 +50,8 @@
 					%>
 				
 					<tr>
-						<td><%= vo.getSeq() %></td>
-						<td><a href="#"><%=vo.getTitle() %></a>&nbsp;[<%=vo.getComment() %>]</td>
+						<td><%= count-- %></td>
+						<td><a href="./view.jsp?seq=<%= vo.getSeq() %>"><%=vo.getTitle() %></a>&nbsp;[<%=vo.getComment() %>]</td>
 						<td><%=vo.getUid() %></td>
 						<td><%=vo.getRdate().substring(2, 10) %></td>
 						<td><%=vo.getHit() %></td>
