@@ -2,6 +2,20 @@ package kr.co.jboard01.vo;
 
 public class MemberVO {
 	
+	private int seq;
+	private String uid;
+	private String pass;
+	private String name;
+	private String nick;
+	private String email;
+	private String hp;
+	private int grade;
+	private String zip;
+	private String addr1;
+	private String addr2;
+	private String regip;
+	private String rdate;
+	
 	public int getSeq() {
 		return seq;
 	}
@@ -80,19 +94,7 @@ public class MemberVO {
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
-	private int seq;
-	private String uid;
-	private String pass;
-	private String name;
-	private String nick;
-	private String email;
-	private String hp;
-	private int grade;
-	private String zip;
-	private String addr1;
-	private String addr2;
-	private String regip;
-	private String rdate;
+	
 	
 
 }

@@ -36,7 +36,8 @@
 			<div class="list">
 				<p class="logout">
 					<%= user.getNick() %>님! 반갑습니다. 
-					<a href="./proc/logout.jsp">[로그아웃]</a><p>
+					<a href="./proc/logout.jsp">[로그아웃]</a>
+				<p>
 				<table>
 					<tr>
 						<td>번호</td>

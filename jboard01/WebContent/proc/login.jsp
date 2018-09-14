@@ -20,7 +20,6 @@
 	String sql = "SELECT * FROM JB_MEMBER WHERE ";
 		   sql += "uid='"+id+"' AND pass='"+pw+"';";
 	
-	out.println("sql : "+sql);
 		   
 	conn =  DBConfig.getConnect();
 	//3단계
